@@ -11,7 +11,7 @@ import workVideo from "@/assets/work-video.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Shivam Gambhir — B.Tech CSE (AI&DS) Student & Content Creator" },
+      { title: "Shivam Gambhir | Student & Content Creator" },
       {
         name: "description",
         content:
