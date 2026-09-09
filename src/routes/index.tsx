@@ -210,7 +210,7 @@ function Index() {
               <Reveal
                 key={w.title}
                 delay={i * 130}
-                className={i === 1 ? "md:mt-12" : undefined}
+                className={i === 1 ? "md:mt-12" : ""}
               >
                 <article className="group relative overflow-hidden rounded-[2rem] border border-border/70 bg-card shadow-[var(--shadow-soft)] transition-transform duration-500 hover:-translate-y-2">
                   <img
