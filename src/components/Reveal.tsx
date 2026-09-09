@@ -18,6 +18,18 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return;
+    }
+
+    const inView = () => {
+      const r = el.getBoundingClientRect();
+      return r.top < window.innerHeight - 40 && r.bottom > 0;
+    };
+    if (inView()) setShown(true);
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -27,11 +39,24 @@ export function Reveal({
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.05, rootMargin: "0px 0px -40px 0px" },
     );
     io.observe(el);
-    return () => io.disconnect();
+
+    const onScroll = () => {
+      if (inView()) {
+        setShown(true);
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
+
 
   const Comp = Tag as "div";
 
