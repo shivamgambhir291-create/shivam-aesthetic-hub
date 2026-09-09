@@ -25,6 +25,7 @@ export function Reveal({
     }
 
     let done = false;
+    let timeouts: ReturnType<typeof setTimeout>[] = [];
     const show = () => {
       if (done) return;
       done = true;
