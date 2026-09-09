@@ -65,7 +65,7 @@ export function Reveal({
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("load", recheck);
     // Layout can shift while fonts/images load; retry a few times.
-    const timeouts = [100, 400, 1000].map((ms) => setTimeout(check, ms));
+    timeouts = [100, 400, 1000].map((ms) => setTimeout(check, ms));
 
     return () => {
       io.disconnect();
